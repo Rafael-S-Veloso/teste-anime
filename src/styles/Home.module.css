@@ -1,0 +1,40 @@
+.container {
+    background-image: url(../../public/banner.png);
+    width: auto;
+    height: 456px;
+    margin-top: -25px;
+    gap: 0px;
+    opacity: 0px;
+
+
+}
+
+.input {
+    margin-left: 540px;
+    margin-top: 25px;
+    width: 230px;
+    height: 31px;
+    top: 120px;
+    left: 580px;
+    gap: 0px;
+    background-color: transparent;
+    border-radius: 10px;
+    color: black;
+    opacity: 1;
+
+}
+
+
+
+
+.imagesContainer {
+    width: auto;
+    height: 364px;
+    top: 593px;
+    left: 109px;
+    gap: 10px;
+    opacity: 0px;
+    display: flex;
+    margin-top: 550px;
+    margin-left: -20px;
+}
