@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react";
-import Button from "@mui/material/Button";
+import IconButton from "@mui/material/IconButton";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
+import MenuIcon from "@mui/icons-material/Menu";
 import axios from "axios";
+import styles from "../../styles/sideBar.module.css";
 
 export default function PositionedMenu(...props) {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -33,33 +35,39 @@ export default function PositionedMenu(...props) {
   }, []);
 
   return (
-    <div>
-      <Button
+    <div className={styles["styles-menu"]}>
+      <IconButton
+        className={styles["positioned-menu-button"]}
         id="demo-positioned-button"
         aria-controls={open ? "demo-positioned-menu" : undefined}
         aria-haspopup="true"
         aria-expanded={open ? "true" : undefined}
         onClick={handleClick}
       >
-        x
-      </Button>
+        <MenuIcon />
+      </IconButton>
       <Menu
         id="demo-positioned-menu"
+        className={styles["positioned-menu"]}
         aria-labelledby="demo-positioned-button"
         anchorEl={anchorEl}
         open={open}
         onClose={handleClose}
         anchorOrigin={{
+          vertical: "bottom",
           vertical: "left",
-          horizontal: "left",
         }}
         transformOrigin={{
+          vertical: "top",
           vertical: "left",
-          horizontal: "left",
         }}
       >
         {category.map((item) => (
-          <MenuItem onClick={handleClose} key={item.attributes.title}>
+          <MenuItem
+            className={styles["positioned-menu-item"]}
+            onClick={handleClose}
+            key={item.attributes.title}
+          >
             {item.attributes.title}
           </MenuItem>
         ))}

@@ -1,9 +1,11 @@
 /* eslint-disable @next/next/no-img-element */
 import { useEffect, useState } from "react";
 import axios from "axios";
+import Image from "next/image";
 import styles from "../styles/Home.module.css";
 import SimpleSlider from "@/components/Carousel";
 import PositionedMenu from "../components/sideBar/sideBar";
+import rodape from "../../public/rodape.png";
 
 function Pages() {
   const [images, setImages] = useState([]);
@@ -31,7 +33,7 @@ function Pages() {
   return (
     <div className={styles.container}>
       <PositionedMenu />
-      <div className={styles.input}>
+      <div className={styles.inputContainer}>
         <input type="text" placeholder="Buscar..." className={styles.input} />
       </div>
       <div className={styles.imagesContainer}>
@@ -44,8 +46,11 @@ function Pages() {
           />
         ))}
       </div>
-      <div className={styles.carossel}>
+      <div className={styles.carousel}>
         <SimpleSlider />
+      </div>
+      <div className={styles.footer}>
+        <Image src={rodape} alt="Rodapé" />
       </div>
     </div>
   );
