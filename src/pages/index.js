@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import styles from "../styles/Home.module.css";
 import SimpleSlider from "@/components/Carousel";
+import PositionedMenu from "../components/sideBar/sideBar";
 
 function Pages() {
   const [images, setImages] = useState([]);
@@ -29,6 +30,7 @@ function Pages() {
 
   return (
     <div className={styles.container}>
+      <PositionedMenu />
       <div className={styles.input}>
         <input type="text" placeholder="Buscar..." className={styles.input} />
       </div>
