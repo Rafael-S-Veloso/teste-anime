@@ -1,5 +1,6 @@
 .container {
     background-image: url(../../public/banner.png);
+    background-repeat: no-repeat;
     width: auto;
     height: 456px;
     margin-top: -25px;
@@ -37,4 +38,8 @@
     display: flex;
     margin-top: 550px;
     margin-left: -20px;
+}
+
+.carossel {
+    margin: 0 auto;
 }

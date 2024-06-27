@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import styles from "../styles/Home.module.css";
+import SimpleSlider from "@/components/Carousel";
 
 function Pages() {
   const [images, setImages] = useState([]);
@@ -40,6 +41,9 @@ function Pages() {
             className={styles.image}
           />
         ))}
+      </div>
+      <div className={styles.carossel}>
+        <SimpleSlider />
       </div>
     </div>
   );
