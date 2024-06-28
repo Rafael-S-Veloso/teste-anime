@@ -10,53 +10,53 @@ import rodape from "../../public/rodape.png";
 function Pages() {
   const [images, setImages] = useState([]);
   const [topRatedImages, setTopRatedImages] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    const fetchImages = async () => {
+    const fetchImages = async (url, setState) => {
       try {
-        const response = await axios.get(
-          "https://kitsu.io/api/edge/anime?page%5Blimit%5D=5&sort=-average_rating"
-        );
+        const response = await axios.get(url);
         const animeData = response.data.data;
-
         const imageUrls = animeData.map(
           (anime) => anime.attributes.posterImage.small
         );
-        setImages(imageUrls);
+        setState(imageUrls);
       } catch (error) {
-        console.error("Erro ao buscar os dados da API", error);
+        setError("Error fetching data from API");
+        console.error(error);
+      } finally {
+        setLoading(false);
       }
     };
 
-    const fetchTopRatedImages = async () => {
-      try {
-        const response = await axios.get(
-          "https://kitsu.io/api/edge/anime?page%5Blimit%5D=5&sort=-user_count"
-        );
-        const topRatedAnimeData = response.data.data;
-
-        const topRatedImageUrls = topRatedAnimeData.map(
-          (anime) => anime.attributes.posterImage.small
-        );
-        setTopRatedImages(topRatedImageUrls);
-      } catch (error) {
-        console.error("Erro ao buscar os dados da API", error);
-      }
-    };
-
-    fetchImages();
-    fetchTopRatedImages();
+    fetchImages(
+      "https://kitsu.io/api/edge/anime?page%5Blimit%5D=5&sort=-average_rating",
+      setImages
+    );
+    fetchImages(
+      "https://kitsu.io/api/edge/anime?page%5Blimit%5D=5&sort=-user_count",
+      setTopRatedImages
+    );
   }, []);
+
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>{error}</div>;
 
   return (
     <div className={styles.container}>
-      <PositionedMenu />
+      <div className={styles.menu}>
+        <PositionedMenu />
+      </div>
       <div className={styles.inputContainer}>
         <input type="text" placeholder="Buscar..." className={styles.input} />
       </div>
 
       <div className={styles.h1font}>
-        <h1>Animes Mais Populares</h1>
+        <h1>
+          <span className={styles.orangeText}>Anime</span>{" "}
+          <span className={styles.greenText}>Mais Populares</span>
+        </h1>
       </div>
 
       <div className={styles.populares}>
@@ -64,7 +64,7 @@ function Pages() {
           <img
             key={index}
             src={url}
-            alt={`Anime ${index}`}
+            alt={`Popular Anime ${index + 1}`}
             className={styles.image}
           />
         ))}
@@ -74,14 +74,17 @@ function Pages() {
         <SimpleSlider />
       </div>
       <div className={styles.h2}>
-        <h2>Animes Mais Bem Classificados</h2>
+        <h2>
+          <span className={styles.orangeText}>Anime</span>{" "}
+          <span className={styles.greenText}>Mais bem Classificados</span>
+        </h2>
       </div>
       <div className={styles.classificados}>
         {images.map((url, index) => (
           <img
             key={index}
             src={url}
-            alt={`Anime ${index}`}
+            alt={`Top Rated Anime ${index + 1}`}
             className={styles.image}
           />
         ))}

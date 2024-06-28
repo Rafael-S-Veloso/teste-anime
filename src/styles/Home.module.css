@@ -1,11 +1,10 @@
 .container {
     background-image: url(../../public/banner.png);
     background-repeat: no-repeat;
-    width: 1366px;
+    width: auto;
     height: 456px;
     top: 83px;
-    gap: 0px;
-    opacity: 0px;
+    padding: 20px;
 }
 
 .input {
@@ -26,17 +25,32 @@
 
 .populares {
     display: flex;
-    width: 1206px;
+    width: 1050px;
+    gap: 20px;
+    padding: 20px;
 }
+
+.orangeText {
+    color: #f46d1b;
+    margin-left: 25px;
+}
+
+.greenText {
+    color: #34ac40;
+    margin-left: 25px;
+}
+
 
 .classificados {
     display: flex;
     width: 1206px;
+    gap: 20px;
+    padding: 20px;
 }
 
 .carrossel {
     margin: 0 auto;
-    width: 1208px;
+    width: 100%;
     height: 200px;
     margin-top: 40px;
 
