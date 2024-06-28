@@ -6,8 +6,6 @@
     top: 83px;
     gap: 0px;
     opacity: 0px;
-
-
 }
 
 .input {
@@ -22,30 +20,33 @@
     border-radius: 10px;
     color: black;
     opacity: 1;
-
 }
 
-.imagesContainer {
-    width: auto;
-    height: 364px;
-    top: 593px;
-    left: 109px;
-    gap: 10px;
-    opacity: 0px;
-    display: flex;
-    margin-top: 450px;
 
+
+.populares {
+    display: flex;
+    width: 1206px;
+}
+
+.classificados {
+    display: flex;
+    width: 1206px;
 }
 
 .carrossel {
     margin: 0 auto;
     width: 1208px;
     height: 200px;
-    top: 1039px;
-    left: 109px;
-    margin-top: 30px;
+    margin-top: 40px;
 
 }
+
+.h1font {
+    margin-top: 400px;
+}
+
+
 
 .footer {
     margin-top: 80px;
