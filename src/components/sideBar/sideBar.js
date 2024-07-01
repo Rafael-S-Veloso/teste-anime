@@ -4,12 +4,14 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import MenuIcon from "@mui/icons-material/Menu";
 import axios from "axios";
+import { useRouter } from "next/router";
 import styles from "../../styles/sideBar.module.css";
 
 export default function PositionedMenu(props) {
   const [anchorEl, setAnchorEl] = useState(null);
   const [categories, setCategories] = useState([]);
   const open = Boolean(anchorEl);
+  const router = useRouter();
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -17,6 +19,11 @@ export default function PositionedMenu(props) {
 
   const handleClose = () => {
     setAnchorEl(null);
+  };
+
+  const handleCategoryClick = (categoryId) => {
+    handleClose();
+    router.push(`/category?id=${categoryId}`);
   };
 
   const fetchCategories = async () => {
@@ -66,7 +73,7 @@ export default function PositionedMenu(props) {
         {categories.map((category) => (
           <MenuItem
             className={styles["positioned-menu-item"]}
-            onClick={handleClose}
+            onClick={() => handleCategoryClick(category.id)}
             key={category.id}
           >
             {category.attributes.title}
