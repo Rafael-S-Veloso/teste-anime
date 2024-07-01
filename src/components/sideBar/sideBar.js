@@ -6,10 +6,11 @@ import MenuIcon from "@mui/icons-material/Menu";
 import axios from "axios";
 import styles from "../../styles/sideBar.module.css";
 
-export default function PositionedMenu(...props) {
+export default function PositionedMenu(props) {
   const [anchorEl, setAnchorEl] = useState(null);
-  const [category, setCategory] = useState([]);
+  const [categories, setCategories] = useState([]);
   const open = Boolean(anchorEl);
+
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -18,20 +19,20 @@ export default function PositionedMenu(...props) {
     setAnchorEl(null);
   };
 
-  const fetchImages = async () => {
+  const fetchCategories = async () => {
     try {
       const response = await axios.get(
         "https://kitsu.io/api/edge/categories?page%5Blimit%5D=40&sort=-total_media_count"
       );
-      const animeData = response.data.data;
-      setCategory(animeData);
+      const categoryData = response.data.data;
+      setCategories(categoryData);
     } catch (error) {
       console.error("Erro ao buscar os dados da API", error);
     }
   };
 
   useEffect(() => {
-    fetchImages();
+    fetchCategories();
   }, []);
 
   return (
@@ -55,20 +56,20 @@ export default function PositionedMenu(...props) {
         onClose={handleClose}
         anchorOrigin={{
           vertical: "bottom",
-          vertical: "left",
+          horizontal: "left",
         }}
         transformOrigin={{
           vertical: "top",
-          vertical: "left",
+          horizontal: "left",
         }}
       >
-        {category.map((item) => (
+        {categories.map((category) => (
           <MenuItem
             className={styles["positioned-menu-item"]}
             onClick={handleClose}
-            key={item.attributes.title}
+            key={category.id}
           >
-            {item.attributes.title}
+            {category.attributes.title}
           </MenuItem>
         ))}
       </Menu>

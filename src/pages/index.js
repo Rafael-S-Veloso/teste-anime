@@ -2,10 +2,12 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Image from "next/image";
+import Tooltip from "@mui/material/Tooltip";
 import styles from "../styles/Home.module.css";
-import SimpleSlider from "@/components/Carousel";
+import SimpleSlider from "@/components/Carrousel/Carousel";
 import PositionedMenu from "../components/sideBar/sideBar";
 import rodape from "../../public/rodape.png";
+import Container from "@/components/Container/Container";
 
 function Pages() {
   const [images, setImages] = useState([]);
@@ -51,45 +53,48 @@ function Pages() {
       <div className={styles.inputContainer}>
         <input type="text" placeholder="Buscar..." className={styles.input} />
       </div>
+      <Container>
+        {/* <div className={styles.content}></div> */}
+        <div className={styles.h1font}>
+          <h1>
+            <span className={styles.orangeText}>Anime</span>{" "}
+            <span className={styles.greenText}>Mais Populares</span>
+          </h1>
+        </div>
 
-      <div className={styles.h1font}>
-        <h1>
-          <span className={styles.orangeText}>Anime</span>{" "}
-          <span className={styles.greenText}>Mais Populares</span>
-        </h1>
-      </div>
+        <div className={styles.populares}>
+          {topRatedImages.map((url, index) => (
+            <Tooltip key={index} title={`Popular Anime ${index + 1}`}>
+              <img
+                src={url}
+                alt={`Popular Anime ${index + 1}`}
+                className={styles.image}
+              />
+            </Tooltip>
+          ))}
+        </div>
 
-      <div className={styles.populares}>
-        {topRatedImages.map((url, index) => (
-          <img
-            key={index}
-            src={url}
-            alt={`Popular Anime ${index + 1}`}
-            className={styles.image}
-          />
-        ))}
-      </div>
-
-      <div className={styles.carrossel}>
-        <SimpleSlider />
-      </div>
-      <div className={styles.h2}>
-        <h2>
-          <span className={styles.orangeText}>Anime</span>{" "}
-          <span className={styles.greenText}>Mais bem Classificados</span>
-        </h2>
-      </div>
-      <div className={styles.classificados}>
-        {images.map((url, index) => (
-          <img
-            key={index}
-            src={url}
-            alt={`Top Rated Anime ${index + 1}`}
-            className={styles.image}
-          />
-        ))}
-      </div>
-
+        <div className={styles.carrossel}>
+          <SimpleSlider />
+        </div>
+        <div className={styles.h2}>
+          <h2>
+            <span className={styles.orangeText}>Anime</span>{" "}
+            <span className={styles.greenText}>Mais bem Classificados</span>
+          </h2>
+        </div>
+        <div className={styles.classificados}>
+          {images.map((url, index) => (
+            <Tooltip key={index} title={`Top Rated Anime ${index + 1}`}>
+              <img
+                src={url}
+                alt={`Top Rated Anime ${index + 1}`}
+                className={styles.image}
+              />
+            </Tooltip>
+          ))}
+        </div>
+      </Container>
       <div className={styles.footer}>
         <Image src={rodape} alt="Rodapé" />
       </div>

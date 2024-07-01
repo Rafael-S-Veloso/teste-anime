@@ -1,13 +1,12 @@
 .styles-menu {
     background-color: #f46d1b;
     width: 70px;
-    height: 100px;
+    height: 1900px;
     max-width: 40px;
     margin-right: 40px;
+    z-index: 9;
+    position: absolute;
 }
-
-
-
 
 .positioned-menu-button {
     color: white;
